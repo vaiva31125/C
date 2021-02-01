@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+int const D = 100;
+void spausdinti(int mas[D], int K)
+{
+    int i;
+    for (i=0;i<K;i++)
+    {
+        printf("%6d", mas[i]);
+    }
+        printf("\n");
+}
+
+int main()
+{
+    int N, i, j, kiekis, skaic , b, max, kiekis1=1;
+    time_t t;
+    int mas[D];
+    printf("Iveskite  masyvo  dimensijos dydi ne didesni nei %d\n", D);
+    scanf("%d", &N);
+    if (N > D)
+    {
+        printf("Ivestas skaicius yra per didelis\n");
+    }
+    else
+    {
+        srand((unsigned) time(&t));
+        for (i=0;i<N;i++)
+            {
+                mas[i] = rand() %10;
+            }
+    }
+    spausdinti(mas, N);
+    printf("\n");
+
+    for (i=0;i<N;i++)
+        {
+              skaic= mas[i];
+              kiekis=1;
+              for (b=i+1;b<N;b++)
+                {
+                    if (mas[b]==skaic)
+                        {
+                            kiekis++;
+                        }
+                }
+                if (kiekis>=kiekis1)
+                {
+                    max = mas[i];
+                    kiekis1=kiekis;
+                }
+
+        }
+
+    printf("%d",max);
+
+
+    return 0;
+
+}

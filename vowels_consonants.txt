@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+void skaiciuoti(char*r_mas, int *r_b, int *r_p)
+{
+    int i,x,y,t=0;
+    while (*(r_mas + i)!= '\0')
+    {
+            if ((*(r_mas +i)=='a') || (*(r_mas +i) == 'A') || (*(r_mas +i) == 'e') || (*(r_mas +i) == 'E') || (*(r_mas +i) == 'i') || (*(r_mas +i) == 'I') || (*(r_mas +i) =='o')|| (*(r_mas +i)=='O') || (*(r_mas +i) == 'u') || (*(r_mas +i) == 'U'))
+            {
+                x++;
+            }
+            else
+            {
+                y++;
+            }
+            if (*(r_mas+i)==' ')
+            {
+                t++;
+            }
+            i++;
+    }
+    *r_b = x;
+    *r_p =y-t;
+}
+int main()
+{
+    int b,p,i = 0;
+    int *r_b, *r_p;
+    char str[150];
+    char *r_mas;
+    printf("ivesti simboliu eilute\n");
+    gets(str);
+
+    r_mas = &str[0];
+    r_b = &b;
+    r_p = &p;
+    skaiciuoti(r_mas, r_b, r_p);
+    printf("balsiu yra: %d\n", *r_b);
+    printf("priebalsiu yra: %d\n", *r_p);
+    return 0;
+}

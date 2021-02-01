@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+int const D = 100;
+void spausdinti(int mas[][D], int K)
+{
+    int i, j;
+    for (i=0;i<K;i++)
+    {
+        for (j=0;j<K;j++)
+        {
+            printf("%6d", mas[i][j]);
+        }
+        printf("\n");
+    }
+}
+int keitimas (int mas1[][D], int M)
+{
+    int l, z;
+    for (l=0;l<M;l++)
+    {
+        for (z=0;z<M;z++)
+        {
+            if (mas1[l][z]<0)
+            {
+                mas1[l][z]=1;
+            }
+            else if (mas1[l][z]>0)
+            {
+                mas1[l][z]=2;
+            }
+        }
+    }
+    return mas1;
+}
+int main()
+{
+    int N, i, j;
+    time_t t;
+    int mas1[D][D];
+    printf("Iveskite dvimacio kvadratinio masyvo vienos dimensijos dydi ne didesni nei %d\n", D);
+    scanf("%d", &N);
+    if (N > D)
+    {
+        printf("Ivestas skaicius yra per didelis\n");
+    }
+    else
+    {
+        srand((unsigned) time(&t));
+        for (i=0;i<N;i++)
+        {
+            for (j=0;j<N;j++)
+            {
+                mas1[i][j] = rand()%20-10;
+            }
+        }
+        printf("Pradinis:\n");
+        spausdinti(mas1, N);
+        printf("\n");
+        keitimas (mas1, N);
+        printf("Rezultatas:\n");
+        spausdinti(mas1, N);
+        printf("\n");
+    }
+    return 0;
+}

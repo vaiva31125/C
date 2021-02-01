@@ -1,0 +1,28 @@
+#include <stdlib.h>
+#include "Funkcija.h"
+int main()
+{
+    char *file_name=malloc(100);
+    int strings;
+    printf("Iveskite failo pavadinima, pavidalu: Tekstas.txt\n");
+    scanf("%s", file_name);
+    //kiek eiluciu yra duomenu faile
+    strings=String_numbr(file_name);
+    int *Surikiuota=malloc(strings*sizeof(Surikiuota));
+    struct Zmogus *ZM = malloc(strings*(sizeof(struct Zmogus)));
+    if (ZM && Surikiuota!= NULL)
+        {
+            Nuskaitymas(file_name, strings, ZM);
+            Rikiavimas(ZM, strings);
+            Rasymas(strings, ZM);
+            free(ZM);
+            free (Surikiuota);
+        }
+    else
+        {
+            printf("Nepavyko isskirti atminties.");
+            return 1;
+        }
+    printf("uzduotis ivykdyta!");
+    return 0;
+}

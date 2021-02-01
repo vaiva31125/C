@@ -1,0 +1,14 @@
+#ifndef FUNKCIJOS_H_INCLUDED
+#define FUNKCIJOS_H_INCLUDED
+struct Zmogus
+{
+    char vardas[100];
+    char pavarde[100];
+    char data[100];
+};
+int Eil(char *file_name);
+void Nuskaitymas(char *file_name, int strings, struct Zmogus ZM[strings]);
+void Rikiavimas(struct Zmogus *ZM, int strings);
+void Rasymas(int strings, struct Zmogus *ZM);
+#endif // FUNKCIJOS_H_INCLUDED
+

@@ -1,0 +1,76 @@
+#include "Funkcija.h"
+#include <stdio.h>
+#include <string.h>
+int String_numbr(char *file_name)
+{
+    int n=0;
+    char c[100];
+    FILE *fp;
+    fp = fopen(file_name, "r");
+    if(fp==NULL)
+        {
+            printf("Failas %s nebuvo atidarytas.", file_name);
+            return 0;
+        }
+    do
+        {
+            fgets(c, 100, fp);
+            n++;
+        }while(!feof(fp));
+    fclose(fp);
+    return n;
+    //n eiluciu skaicius
+}
+
+void Nuskaitymas(char *file_name, int strings, struct Zmogus ZM[strings])
+{
+    FILE * fp;
+    fp = fopen(file_name, "r");
+    if(fp==NULL)
+        {
+            printf("Failas %s nebuvo atidarytas", file_name);
+            return;
+        }
+    for(int i=0; i<strings; i++)
+        {
+             fscanf(fp, "%s %s %s", &ZM[i].vardas, &ZM[i].pavarde, &ZM[i].data);
+        }
+    fclose(fp);
+}
+void Rasymas(int strings, struct Zmogus *ZM)
+{
+    FILE *Surikiuota;
+    Surikiuota = fopen ("Surikiuota.txt","w+");
+    if(Surikiuota==NULL)
+        {
+            printf("Nepavyko sukurti failo 'Surikiuota.txt'.\n");
+            return;
+        }
+    else
+        {
+            for(int i=0; i<strings; i++)
+                {
+                    fprintf(Surikiuota,"%s     %s     %s\n", ZM[i].vardas, ZM[i].pavarde, ZM[i].data);
+                }
+            fclose(Surikiuota);
+        }
+}
+void Rikiavimas (struct Zmogus *ZM, int strings)
+{
+    struct Zmogus t;
+    for(int i=0;i<strings;i++)
+        {
+            for(int j=i+1;j<strings;j++)
+                {
+                    //Didesnė nei nulis reiksmė grazinama, kai pirmasis ZM[i].pavarde nesutapes simbolis didesnis nei ZM[j].pavarde atitinkamas simbolis
+                    if(strcmp(ZM[i].pavarde,ZM[j].pavarde)>0)
+                        {
+                            t=ZM[i];
+                            ZM[i]=ZM[j];
+                            ZM[j]=t;
+                        }
+                }
+        }
+}
+
+
